@@ -27,7 +27,7 @@ unzip:
   stage: unzip
   image: alpine
   script:
-    - find . -name "*.zip" -print0 | xargs -0 -n1 unzip -d ./public/ -o
+    - find ./public/ -maxdepth 1 -name "*.zip" -exec mkdir -p "{}.[预览]" \; -print0 | xargs -0 -n1 -I {} unzip -o -d "{}.[预览]" {}
   only:
     - branches
 
